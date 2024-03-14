@@ -1,0 +1,6 @@
+backend:
+- 'critical-companion-server/**'
+web-app:
+- 'critical-companion-web/**'
+desktop-app:
+- 'critical-companion-app/**'
