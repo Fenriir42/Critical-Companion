@@ -19,7 +19,7 @@ const Home: NextPage = () => {
   }, []);
 
   return (
-    <div className="w-full relative overflow-y-auto flex flex-col items-start justify-start gap-[20px] bg-[url('/wwwdndbeyondcom-by-htmltodesign--free-version--10052024-182150-cest@3x.png')] bg-cover bg-no-repeat bg-[top] leading-[normal] tracking-[normal]">
+    <div className="w-full relative overflow-y-auto flex flex-col items-start justify-start gap-[20px] bg-[url('/bg.png')] bg-cover bg-no-repeat bg-[top] leading-[normal] tracking-[normal]">
       <section className="self-stretch flex flex-col items-start justify-start pt-0 px-0 pb-9 box-border min-w-[1903px] min-h-[859px] max-w-full text-left text-mini text-wwwdndbeyondcom-hit-gray1 font-wwwdndbeyondcom-roboto-regular-13">
         <BackgroundHorizontalBorder />
         <div className="self-stretch flex flex-col items-start justify-start gap-[15px] max-w-full">
