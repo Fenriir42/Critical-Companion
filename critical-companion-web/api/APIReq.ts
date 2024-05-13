@@ -7,7 +7,7 @@ class ApiClient {
   accessToken: string | null;
 
   constructor() {
-    this.serverUrl = `http://${IP}:3001`;
+    this.serverUrl = `http://localhost:3001`;
     this.accessToken = Cookies.get('accessToken') || null;
   }
 

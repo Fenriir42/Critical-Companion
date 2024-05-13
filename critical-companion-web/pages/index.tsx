@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
+import { APIReq } from "../api/APIReq";
 import BackgroundHorizontalBorder from "../components/background-horizontal-border";
 import CampaignSheet from "../components/CampaignSheet";
 
@@ -7,11 +8,9 @@ const Home: NextPage = () => {
   const [campaigns, setCampaigns] = useState([]);
 
   useEffect(() => {
-    // Fetch campaigns data from the API
-    fetch("http://localhost:3001/campaigns/list", { method: "GET" })
-      .then((res) => res.json())
-      .then((data) => {
-        setCampaigns(data); // Update the state with fetched data
+    APIReq.withoutBody("/campaigns/list", "GET")
+      .then((response) => {
+        setCampaigns(response.data);
       })
       .catch((error) => {
         console.error("Error fetching campaigns:", error);
