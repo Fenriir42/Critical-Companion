@@ -35,7 +35,7 @@ const Home: NextPage = () => {
                     <button className="cursor-pointer py-1.5 px-5 bg-wwwdndbeyondcom-outer-space rounded flex flex-row items-center justify-start whitespace-nowrap border-[1px] border-solid border-wwwdndbeyondcom-outer-space hover:bg-dimgray hover:box-border hover:border-[1px] hover:border-solid hover:border-dimgray">
                       <a
                         className="relative text-base leading-[28px] uppercase font-medium font-wwwdndbeyondcom-roboto-regular-13 text-wwwdndbeyondcom-nero text-left [text-decoration:none]"
-                        href="https://www.dndbeyond.com/characters/builder"
+                        href="/create_campaign"
                         target="_blank"
                       >
                         Create A Campaign
