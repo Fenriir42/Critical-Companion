@@ -1,6 +1,7 @@
 import { Route } from '../type';
 import auth from './auth/auth';
 import User from './User/User';
+import Game from './Game/Game';
 import suite from './suite'
 
 const routes: Route[]= [
@@ -45,7 +46,43 @@ const routes: Route[]= [
         method: 'put',
         handler: [User.Update],
         auth: true
-    }
+    },
+    {
+        path: '/game/list',
+        method: 'get',
+        handler: [Game.List],
+        auth: true
+    },
+    {
+        path: '/game/list/:id',
+        method: 'get',
+        handler: [Game.ListUser],
+        auth: true
+    },
+    {
+        path: '/game/read/:id',
+        method: 'get',
+        handler: [Game.Read],
+        auth: true
+    },
+    {
+        path: '/game/delete/:id',
+        method: 'delete',
+        handler: [Game.Delete],
+        auth: true
+    },
+    {
+        path: '/game/update/:id',
+        method: 'put',
+        handler: [Game.Update],
+        auth: true
+    },
+    {
+        path: '/game/create',
+        method: 'post',
+        handler: [Game.Create],
+        auth: true
+    },
 ];
 
 export default routes;
