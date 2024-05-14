@@ -1,28 +1,22 @@
-// pages/register.tsx
 import type { NextPage } from "next";
 import { useState } from "react";
-import APIReq from "../api/APIReq";
+import { APIReq } from "../api/APIReq";
 import Link from 'next/link';
 
 const RegisterPage: NextPage = () => {
-    const [username, setUsername] = useState("");
+    const [mail, setMail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleRegister = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
-        try {
-        const response = await APIReq("/register", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ username, password }),
-        });
-        const data = await response.json();
-        APIReq.setAccessToken(data.accessToken);
-        // Redirect to home page or wherever you want after successful registration
-        } catch (error) {
-        console.error(error);
-        // Handle registration error here
-        }
+        APIReq.json("/register", "POST", { mail, password })
+            .then((response) => {
+                APIReq.setAccessToken(response.data.accessToken);
+                window.location.href = "/";
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     return (
@@ -32,7 +26,7 @@ const RegisterPage: NextPage = () => {
         </Link>
         <form className="flex flex-col gap-4" onSubmit={handleRegister}>
             <h1>Register</h1>
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="Username" />
+            <input type="text" value={mail} onChange={(e) => setMail(e.target.value)} placeholder="Mail" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
             <button type="submit">Register</button>
             <Link href="/login">
