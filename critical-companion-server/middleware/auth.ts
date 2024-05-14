@@ -1,36 +1,25 @@
 import { Handler } from '../type';
-//import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import User from '../routes/User/UserQuerry';
 
 const authMiddleware: Handler = (req, res, next) => {
-  return res.status(501).json({ msg: 'Auth middleware: Not yet implemented' })
-}
-
-/*
-function _errorMessage(res) {
-  return res.status(401).json({ msg: 'Token is not valid' })
-}
-
-function authMiddleware(req, res, next) {
   const authString = req.headers.authorization
-  if (!authString) {
-    return res.status(401).json({ msg: 'No token, authorization denied' })
-  }
 
-  if (!authString.startsWith('Bearer')) return _errorMessage(res)
+  if (!next) return res.status(501).json({ msg: 'Not yet implemented' })
+  if (!authString) return res.status(401).json({ msg: 'No token, authorization denied' })
+  if (!authString.startsWith('Bearer')) return res.status(401).json({ msg: 'Token is not valid' })
   const token = authString.split(' ')[1]
 
-  if (!token) return _errorMessage(res)
-  if (authString.startsWith('Bearer'))
-    jwt.verify(token, process.env.SECRET, (err, decoded) => {
-      if (err) return _errorMessage(res)
+  if (!token) return res.status(401).json({ msg: 'Token is not valid' })
 
-      user.get(decoded.email, (result) => {
-        if (!result) return res.status(400).json({msg: "not found"})
-        req.user = result
-        next()
-      })
+  jwt.verify(token, process.env.SECRET as jwt.Secret, (err, decoded) => {
+    if (err) return res.status(401).json({ msg: 'Token is not valid' })
+    if (typeof decoded === 'string') return res.status(401).json({ msg: 'Token is not valid' })
+    User.Get(decoded?.mail, (result) => { // Change 'decoded.email' to 'decoded?.mail'
+      if (!result) return res.status(400).json({msg: "not found"})
+      req.user = result[0]
+      next()
     })
+  })
 }
-*/
-
 export default authMiddleware;
